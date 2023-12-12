@@ -1,25 +1,45 @@
 {% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% bootstrap_css %}
     <title>Login</title>
 </head>
+
 <body>
     <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}">MyPoems</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'cadastro' %}">Cadastrar-se</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
         <h1>Login</h1>
-        <form action="{% url 'login' %}" method="post" autocomplete="none" class="form">
+        {% bootstrap_messages %}
+        <form action="{% url 'login' %}" method="post" autocomplete="off" class="form">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              </div>
-              <div class="mb-3">
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="nome">
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-              </div>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="senha">
+            </div>
             {% buttons %}
             <button type="submit" class="btn btn-primary">Entrar</button>
             {% endbuttons %}
@@ -28,4 +48,5 @@
 
     {% bootstrap_javascript jquery='full' %}
 </body>
+
 </html>

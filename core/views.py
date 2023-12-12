@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .forms import PostModelFrom
 from .models import Post
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     context = {
@@ -9,6 +10,7 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+@login_required(login_url='/auth/login')
 def post(request):
     if str(request.method) == 'POST':
         form = PostModelFrom(request.POST, request.FILES)
